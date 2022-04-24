@@ -119,6 +119,37 @@ class Conversation {
     // Conversation status events
     onSynchronizationChanged = _onSynchronizationChangedCtrl.stream;
   }
+  
+      String dateTimeParse(String dateTime) {
+      if (dateTime.contains('pm')) {
+        String cleanDateTime = dateTime.replaceAll('pm ', '');
+        String date = cleanDateTime.split(' ')[0];
+        String time = cleanDateTime.split(' ')[1];
+        String tzOffset = cleanDateTime.split(' ')[2];
+        String hour = time.split(':')[0];
+        String minute = time.split(':')[1];
+        String seconds = time.split(':')[2];
+        String newHour =
+        hour == '12' ? '12' : (int.parse(hour) + 12).toString();
+        String newTime = '$newHour:$minute:$seconds';
+        String newDateTime = '$date $newTime $tzOffset';
+        return newDateTime;
+      } else if (dateTime.contains('am')) {
+        String cleanDateTime = dateTime.replaceAll('am ', '');
+        String date = cleanDateTime.split(' ')[0];
+        String time = cleanDateTime.split(' ')[1];
+        String tzOffset = cleanDateTime.split(' ')[2];
+        String hour = time.split(':')[0];
+        String minute = time.split(':')[1];
+        String seconds = time.split(':')[2];
+        String newHour = hour == '12' ? '00' : int.parse(hour) > 9 ? hour : '0$hour';
+        String newTime = '$newHour:$minute:$seconds';
+        String newDateTime = '$date $newTime $tzOffset';
+        return newDateTime;
+      } else {
+        return dateTime;
+      }
+    }
 
   // TODO: should be private, but needs to be accessed from ConversationClient
   void updateFromMap(Map<String, dynamic> map) {
@@ -139,14 +170,14 @@ class Conversation {
 
     dateCreated = map['dateCreated'] == null
         ? null
-        : DateTime.parse(map['dateCreated'] as String);
+        : DateTime.parse(dateTimeParse(map['dateCreated'].toString()));
     createdBy = map['createdBy'] as String?;
     dateUpdated = map['dateUpdated'] == null
         ? null
-        : DateTime.parse(map['dateUpdated'] as String);
+        : DateTime.parse(dateTimeParse(map['dateUpdated'].toString()));
     _lastMessageDate = map['lastMessageDate'] == null
         ? null
-        : DateTime.parse(map['lastMessageDate'] as String);
+        : DateTime.parse(dateTimeParse(map['lastMessageDate'].toString()));
     _lastReadMessageIndex = map['lastReadMessageIndex'] as int?;
     _lastMessageIndex = map['lastMessageIndex'] as int?;
   }
