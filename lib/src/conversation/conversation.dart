@@ -121,7 +121,7 @@ class Conversation {
   }
   
       String dateTimeParse(String dateTime) {
-      if (dateTime.contains('pm')) {
+      if (dateTime.contains('pm') || dateTime.contains('PM')) {
         String cleanDateTime = dateTime.replaceAll('pm ', '');
         String date = cleanDateTime.split(' ')[0];
         String time = cleanDateTime.split(' ')[1];
@@ -134,7 +134,7 @@ class Conversation {
         String newTime = '$newHour:$minute:$seconds';
         String newDateTime = '$date $newTime $tzOffset';
         return newDateTime;
-      } else if (dateTime.contains('am')) {
+      } else if (dateTime.contains('am') || dateTime.contains('AM)) {
         String cleanDateTime = dateTime.replaceAll('am ', '');
         String date = cleanDateTime.split(' ')[0];
         String time = cleanDateTime.split(' ')[1];
