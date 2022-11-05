@@ -120,17 +120,27 @@ class Conversation {
     onSynchronizationChanged = _onSynchronizationChangedCtrl.stream;
   }
   
-//   String cleanTzOffset(String tzOffset, String dateTime){
-//     if(dateTime.contains('PM') || dateTime.contains('AM')){
-//       if(!tzOffset.contains('+') && !tzOffset.contains('-')){
-//       return '+' + offset;
-//       } else {
-//       return offset;
-//       }
-//     } else {
-//     return tzOffset;
-//       }
-//   }
+  String cleanTzOffset(String tzOffset, String dateTime){
+    if(dateTime.contains('PM') || dateTime.contains('AM')){
+      String offsetNumber = DateTime.now().tzOffset.toString().split('.')[0];
+      String offset = offsetNumber
+        .substring(0, offsetNumber.length - 3)
+        .replaceAll(':', '');
+      String cleanOffset = '';
+      if(offset.lenght == 3){
+      cleanOffset = '0' + offset;
+      } else {
+      cleanOffset = offset;
+      }
+      if(!tzOffset.contains('+') && !tzOffset.contains('-')){
+      return '+' + cleanOffset;
+      } else {
+      return cleanOffset;
+      }
+    } else {
+    return tzOffset;
+      }
+  }
   
       String dateTimeParse(String dateTime) {
       if (dateTime.contains('pm') || dateTime.contains('PM')) {
