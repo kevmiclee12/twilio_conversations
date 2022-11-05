@@ -122,11 +122,7 @@ class Conversation {
   
   String cleanTzOffset(String tzOffset, String dateTime){
     if(dateTime.contains('PM') || dateTime.contains('AM')){
-  String offsetNumber = DateTime.now().timeZoneOffset.toString().split('.')[0];
-      String offset = offsetNumber
-        .substring(0, offsetNumber.length - 3)
-        .replaceAll(':', '');
-      if(!offsetNumber.contains('+') && !offsetNumber.contains('-')){
+      if(!tzOffset.contains('+') && !tzOffset.contains('-')){
       return '+' + offset;
       } else {
       return offset;
@@ -163,6 +159,7 @@ class Conversation {
         String newDateTime = '$date $newTime $tzOffset';
         return newDateTime;
       } else {
+        print('DATE TIME: $dateTime');
         return dateTime;
       }
     }
