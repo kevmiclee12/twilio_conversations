@@ -127,9 +127,9 @@ class Conversation {
         .substring(0, offsetNumber.length - 3)
         .replaceAll(':', '');
       if(!offsetNumber.contains('+') && !offsetNumber.contains('-')){
-      return '+' + offsetNumber;
+      return '+' + offset;
       } else {
-      return offsetNumber;
+      return offset;
       }
     } else {
     return tzOffset;
