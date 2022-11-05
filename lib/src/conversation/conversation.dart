@@ -120,24 +120,24 @@ class Conversation {
     onSynchronizationChanged = _onSynchronizationChangedCtrl.stream;
   }
   
-  String cleanTzOffset(String tzOffset, String dateTime){
-    if(dateTime.contains('PM') || dateTime.contains('AM')){
-      if(!tzOffset.contains('+') && !tzOffset.contains('-')){
-      return '+' + offset;
-      } else {
-      return offset;
-      }
-    } else {
-    return tzOffset;
-      }
-  }
+//   String cleanTzOffset(String tzOffset, String dateTime){
+//     if(dateTime.contains('PM') || dateTime.contains('AM')){
+//       if(!tzOffset.contains('+') && !tzOffset.contains('-')){
+//       return '+' + offset;
+//       } else {
+//       return offset;
+//       }
+//     } else {
+//     return tzOffset;
+//       }
+//   }
   
       String dateTimeParse(String dateTime) {
       if (dateTime.contains('pm') || dateTime.contains('PM')) {
         String cleanDateTime = dateTime.replaceAll('pm ', '').replaceAll('PM', '');
         String date = cleanDateTime.split(' ')[0];
         String time = cleanDateTime.split(' ')[1];
-        String tzOffset = cleanTzOffset(cleanDateTime.split(' ')[2], dateTime);
+        String tzOffset = cleanDateTime.split(' ')[2];
         String hour = time.split(':')[0];
         String minute = time.split(':')[1];
         String seconds = time.split(':')[2];
@@ -150,7 +150,7 @@ class Conversation {
         String cleanDateTime = dateTime.replaceAll('am ', '').replaceAll('AM', '');
         String date = cleanDateTime.split(' ')[0];
         String time = cleanDateTime.split(' ')[1];
-        String tzOffset = cleanTzOffset(cleanDateTime.split(' ')[2], dateTime);
+        String tzOffset = cleanDateTime.split(' ')[2];
         String hour = time.split(':')[0];
         String minute = time.split(':')[1];
         String seconds = time.split(':')[2];
