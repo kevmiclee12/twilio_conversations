@@ -121,7 +121,7 @@ class Conversation {
   }
   
   String cleanTzOffset(String tzOffset, String dateTime){
-    if(dateTime.contains('PM') || dateTime.contains('AM'){
+    if(dateTime.contains('PM') || dateTime.contains('AM')){
   String offsetNumber = DateTime.now().timeZoneOffset.toString().split('.')[0];
       String offset = offsetNumber
         .substring(0, offsetNumber.length - 3)
