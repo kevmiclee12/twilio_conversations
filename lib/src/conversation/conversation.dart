@@ -169,7 +169,6 @@ class Conversation {
         String newDateTime = '$date $newTime $tzOffset';
         return newDateTime;
       } else {
-        print('DATE TIME: $dateTime');
         return dateTime;
       }
     }
