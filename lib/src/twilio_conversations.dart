@@ -85,7 +85,7 @@ class TwilioConversations extends FlutterLoggingApi {
     final ConversationClientData result;
     try {
       result = await pluginApi.create(jwtToken, properties.toPigeon());
-print('PROPERTIES: $properties);
+print('PROPERTIES: $properties');
 print('PROPERTIES Pigeon: ${properties.toPigeon}');
       conversationClient
           ?.updateFromMap(Map<String, dynamic>.from(result.encode() as Map));
