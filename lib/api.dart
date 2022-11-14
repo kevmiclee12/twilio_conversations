@@ -462,10 +462,9 @@ class PluginApi {
     final BasicMessageChannel<Object?> channel = BasicMessageChannel<Object?>(
         'dev.flutter.pigeon.PluginApi.create', codec,
         binaryMessenger: _binaryMessenger);
-    print('CHANNEL $channel');
-    print('CHANNEL Properties: ${arg_properties.region}');
+    print('BINARY: $_binaryMessenger');
     final Map<Object?, Object?>? replyMap = await channel
-        .send(<Object>[arg_jwtToken, arg_properties.region ?? 'us1']) as Map<Object?, Object?>?;
+        .send(<Object>[arg_jwtToken, arg_properties]) as Map<Object?, Object?>?;
     if (replyMap == null) {
       throw PlatformException(
         code: 'channel-error',
