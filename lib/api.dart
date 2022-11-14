@@ -462,13 +462,15 @@ class PluginApi {
     final BasicMessageChannel<Object?> channel = BasicMessageChannel<Object?>(
         'dev.flutter.pigeon.PluginApi.create', codec,
         binaryMessenger: _binaryMessenger);
+    print('CHANNEL $channel');
+    print('CHANNEL Properties: ${arg_properties.region}');
     final Map<Object?, Object?>? replyMap = await channel
         .send(<Object>[arg_jwtToken, arg_properties]) as Map<Object?, Object?>?;
     if (replyMap == null) {
       throw PlatformException(
         code: 'channel-error',
         message: 'Unable to establish connection on channel.',
-        details: replyMap,
+        details: null,
       );
     } else if (replyMap['error'] != null) {
       final Map<Object?, Object?> error =
