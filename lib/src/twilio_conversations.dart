@@ -84,8 +84,8 @@ class TwilioConversations extends FlutterLoggingApi {
     // (happens in iOS, not sure about Android)
     final ConversationClientData result;
     try {
-      print('PROPERTIES: $properties');
-print('PROPERTIES Pigeon: ${properties.toPigeon}');
+      print('PROPERTIES: ${properties.region}');
+print('PROPERTIES Pigeon: ${properties.toPigeon()}');
       result = await pluginApi.create(jwtToken, properties.toPigeon());
 
       conversationClient
