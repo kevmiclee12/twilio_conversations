@@ -465,7 +465,7 @@ class PluginApi {
     print('CHANNEL $channel');
     print('CHANNEL Properties: ${arg_properties.region}');
     final Map<Object?, Object?>? replyMap = await channel
-        .send(<Object>[arg_jwtToken, arg_properties.region]) as Map<Object?, Object?>?;
+        .send(<Object>[arg_jwtToken, arg_properties.region ?? 'us1']) as Map<Object?, Object?>?;
     if (replyMap == null) {
       throw PlatformException(
         code: 'channel-error',
