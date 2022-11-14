@@ -468,7 +468,7 @@ class PluginApi {
       throw PlatformException(
         code: 'channel-error',
         message: 'Unable to establish connection on channel.',
-        details: null,
+        details: replyMap,
       );
     } else if (replyMap['error'] != null) {
       final Map<Object?, Object?> error =
