@@ -464,6 +464,8 @@ class PluginApi {
         binaryMessenger: _binaryMessenger);
     print('BINARY: $_binaryMessenger');
     print('BINARY STRING: ${_binaryMessenger.toString()}');
+    print('CODEC: $codec');
+    print('CODEC STRING: ${codec.toString()}');
     final Map<Object?, Object?>? replyMap = await channel
         .send(<Object>[arg_jwtToken, arg_properties]) as Map<Object?, Object?>?;
     if (replyMap == null) {
